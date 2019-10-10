@@ -9,18 +9,18 @@ import android.view.MotionEvent
 import android.app.Activity
 import android.content.Context
 import android.graphics.Paint
-import android.graphics.RectF
 import android.graphics.Canvas
 import android.graphics.Color
 
 val nodes : Int = 5
-val parts : Int = 3
+val parts : Int = 5
+val finalDeg : Float = 180f
 val scGap : Float = 0.01f
 val strokeFactor : Int = 90
 val sizeFactor : Float = 2.9f
 val foreColor : Int = Color.parseColor("#673AB7")
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rFactor : Float = 2.9f
+val rFactor : Float = 4f
 val delay : Long = 20
 
 fun Int.inverse() : Float = 1f / this
@@ -29,13 +29,13 @@ fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale
 
 fun Canvas.drawLineDot(i : Int, sc1 : Float, sc2 : Float, size : Float, paint : Paint) {
     val r : Float = size / rFactor
-    val deg : Float = 90f / (parts - 1)
+    val deg : Float = finalDeg / (parts - 1)
     save()
     rotate(deg * i)
     for (j in 0..1) {
         drawCircle(0f, -size * j * sc1.divideScale(i, parts), r, paint)
     }
-    drawLine(0f, -r, 0f, -r - (size - 2 * r) * sc2, paint)
+    drawLine(0f, -r, 0f, -r - (size - 2 * r) * sc2.divideScale(i, parts), paint)
     restore()
 }
 
