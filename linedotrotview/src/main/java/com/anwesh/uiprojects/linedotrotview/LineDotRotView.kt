@@ -216,4 +216,13 @@ class LineDotRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineDotRotView {
+            val view : LineDotRotView = LineDotRotView(activity)
+            activity.setContentView(view)
+            return view 
+        }
+    }
 }
