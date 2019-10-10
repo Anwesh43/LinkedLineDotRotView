@@ -54,9 +54,27 @@ fun Canvas.drawLDRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = foreColor
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
-    paint.style = Paint.Style.STROKE 
+    paint.style = Paint.Style.STROKE
     save()
     translate(w / 2, gap * (i + 1))
     drawLineDots(sc1, sc2, size, paint)
     restore()
+}
+
+class LineDotRotView(ctx : Context) : View(ctx) {
+
+    private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
 }
